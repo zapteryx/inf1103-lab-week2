@@ -16,3 +16,5 @@ while True:
         print("The stock quantity cannot be a negative number.")
         failed += 1
         continue
+    inventory += stock_quantity
+    print("Updated inventory count:", inventory)

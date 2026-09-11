@@ -12,3 +12,7 @@ while True:
     except ValueError:
         print("The stock quantity entered was not a valid integer.")
         continue
+    if stock_quantity < 0:
+        print("The stock quantity cannot be a negative number.")
+        failed += 1
+        continue

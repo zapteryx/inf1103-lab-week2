@@ -10,7 +10,7 @@ def get_valid_input():
     except ValueError:
         print("The stock quantity entered was not a valid integer.")
         return False
-    if stock_quantity < 0:
+    if stock_quantity <= 0:
         print("The stock quantity cannot be a negative number.")
         return False
     return stock_quantity
@@ -37,7 +37,9 @@ while True:
         continue
     processed_result = process_delivery(inventory, stock_quantity)
     inventory = processed_result
-    print("Updated inventory count:", processed_result)
+    print("Updated inventory count:", inventory)
+    tax_amount = calculate_tax(stock_quantity)
+    print("Tax amount (10%):", tax_amount)
     if inventory > 500:
         print("Overstock alert: the inventory has exceeded 500 units (" + str(inventory) + ")")
         break

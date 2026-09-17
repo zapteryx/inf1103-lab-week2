@@ -21,14 +21,24 @@ def get_valid_input():
         return get_valid_input()
     return stock_quantity
 
+def process_delivery(current_total, new_value):
+    return current_total + new_value
+
+def calculate_tax(amount):
+    return 0.1 * amount
+
+def generate_report(total_units, failed_attempts):
+    print("Total Units Processed:", total_units)
+    print("Number of Failed/Rejected Entries:", failed_attempts)
+
 while True:
     stock_quantity = get_valid_input()
     if not stock_quantity:
         break
-    inventory += stock_quantity
-    print("Updated inventory count:", inventory)
+    processed_result = process_delivery(inventory, stock_quantity)
+    inventory = processed_result
+    print("Updated inventory count:", processed_result)
     if inventory > 500:
         print("Overstock alert: the inventory has exceeded 500 units (" + str(inventory) + ")")
         break
-print("Total Units Processed:", inventory)
-print("Number of Failed/Rejected Entries:", failed)
+generate_report(inventory, failed)

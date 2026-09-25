@@ -53,7 +53,7 @@ while True:
     print("Updated inventory count:", inventory)
     tax_amount = calculate_tax(stock_quantity)
     print("Tax amount (10%):", tax_amount)
-    if inventory > 500:
-        print("Overstock alert: the inventory has exceeded 500 units (" + str(inventory) + ")")
-        break
+    # if inventory > 500:
+    #     print("Overstock alert: the inventory has exceeded 500 units (" + str(inventory) + ")")
+    #     break
 generate_report(inventory, failed)

@@ -1,3 +1,12 @@
+def load_inventory():
+    with open('inventory.txt', 'r') as file:
+        return file.readlines()
+    return []
+
+def save_inventory(inventory):
+    with open('inventory.txt', 'w') as file:
+        file.writelines(inventory)
+
 # get_valid_input(): takes no input, returns "quit", False, or a valid integer
 def get_valid_input():
     stock_quantity = input("Enter stock quantity: ")
@@ -29,7 +38,7 @@ def generate_report(total_units, failed_attempts):
     print("Total Units Processed:", total_units)
     print("Number of Failed/Rejected Entries:", failed_attempts)
 
-inventory = 0
+inventory = load_inventory()
 failed = 0
 
 while True:

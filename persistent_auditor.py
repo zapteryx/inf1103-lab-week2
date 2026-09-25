@@ -2,9 +2,8 @@ def load_inventory():
     inv = []
     try:
         with open('inventory.txt', 'r') as file:
-            data = file.readlines()
-            for item in data:
-                inv.append(int(item.replace('\n', '')))
+            for item in file:
+                inv.append(int(item.strip()))
         return inv
     except FileNotFoundError:
         return []

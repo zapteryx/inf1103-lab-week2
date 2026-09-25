@@ -1,11 +1,18 @@
 def load_inventory():
-    with open('inventory.txt', 'r') as file:
-        return file.readlines()
-    return []
+    inv = []
+    try:
+        with open('inventory.txt', 'r') as file:
+            data = file.readlines()
+            for item in data:
+                inv.append(int(item.replace('\n', '')))
+        return inv
+    except FileNotFoundError:
+        return []
 
 def save_inventory(inventory):
     with open('inventory.txt', 'w') as file:
-        file.writelines(inventory)
+        for item in inventory:
+            file.write(str(item) + '\n')
 
 # get_valid_input(): takes no input, returns "quit", False, or a valid integer
 def get_valid_input():
@@ -26,8 +33,9 @@ def get_valid_input():
     return stock_quantity
 
 # process_delivery(current_total, new_value): takes the current running total, the new value to be added, and returns the sum
-def process_delivery(current_total, new_value):
-    return current_total + new_value
+def process_delivery(inventory, new_value):
+    inventory.append(new_value)
+    return sum(inventory)
 
 # calculate_tax(amount): takes the amount, returns the tax for the amount (10%)
 def calculate_tax(amount):
@@ -44,16 +52,16 @@ failed = 0
 while True:
     stock_quantity = get_valid_input()
     if stock_quantity == "quit":
+        save_inventory(inventory)
         break
     if not stock_quantity:
         failed += 1
         continue
     processed_result = process_delivery(inventory, stock_quantity)
-    inventory = processed_result
-    print("Updated inventory count:", inventory)
+    print("Updated inventory count:", processed_result)
     tax_amount = calculate_tax(stock_quantity)
     print("Tax amount (10%):", tax_amount)
     # if inventory > 500:
     #     print("Overstock alert: the inventory has exceeded 500 units (" + str(inventory) + ")")
     #     break
-generate_report(inventory, failed)
+generate_report(sum(inventory), failed)

@@ -1,3 +1,4 @@
+# get_valid_input(): takes no input, returns "quit", False, or a valid integer
 def get_valid_input():
     stock_quantity = input("Enter stock quantity: ")
     if stock_quantity == "quit":
@@ -15,12 +16,15 @@ def get_valid_input():
         return False
     return stock_quantity
 
+# process_delivery(current_total, new_value): takes the current running total, the new value to be added, and returns the sum
 def process_delivery(current_total, new_value):
     return current_total + new_value
 
+# calculate_tax(amount): takes the amount, returns the tax for the amount (10%)
 def calculate_tax(amount):
     return 0.1 * amount
 
+# generate_report(total_units, failed_attempts): takes the current running total, number of failed attempts, and prints the final totals
 def generate_report(total_units, failed_attempts):
     print("Total Units Processed:", total_units)
     print("Number of Failed/Rejected Entries:", failed_attempts)
